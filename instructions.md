@@ -161,6 +161,30 @@ Use a ticker to read the data every 10 ms., then use the value from the accelero
 
 You can play with the distribution of the tone. Just feeding the raw data into the algorithm doesn't generate the nicest effect.
 
+### 4b. Adding pads
+
+We can add vibration pads as well, although this requires a bit of assembly.
+
+1. Take one of the piezo pads and a 1 million Ohm resistor.
+1. Put the red end into A0 ([pinout](https://developer.mbed.org/media/uploads/GregC/xfrdm-k64f_header-pinout.jpg.pagespeed.ic.GDev93u6zd.jpg)) *Change this link to reflect the pinout of your board*.
+1. Put the black end in one of the GND pins.
+1. Put the resistor in the same pins (so one end in A0, one in GND, requires a bit of jamming).
+1. Now under 'YOUR CODE HERE (2)' add:
+
+```cpp
+    uint16_t v = pad.read_u16();
+    if (v > 1000 && !is_pad_high) {
+        play_tone(NOTE_F4);
+
+        Timeout t;
+        t.attach(silence, 0.2f); // after 200 ms. call silence
+    }
+
+    is_pad_high = v > 1000;
+```
+
+Now when we hit the pad, we get to play a tone! It's possible to detect how hard you hit the pad as well by checking the value of `v`, vary the sound depending on the value of the input (1000 is pretty soft tap, 30000 a lot louder).
+
 ## 5. Songs
 
 1. In 'select_project.h' change the number to `5`.

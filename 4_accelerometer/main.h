@@ -6,6 +6,7 @@ InterruptIn btn1(BUTTON1);     // we create a variable 'btn1', use it as an in p
 InterruptIn btn2(BUTTON2);     // we create a variable 'btn2', use it as an in port
 
 PwmOut buzzer(D3);             // our buzzer is a PWM output (pulse-width modulation)
+AnalogIn pad(A0);              // connect a pad to the analog input
 
 Timeout tone_timeout;          // TimeOut = a interrupt to call a function after a specified delay
 
@@ -24,6 +25,11 @@ static void play_tone(int tone) {
     buzzer.write(0.10f); // 10% duty cycle, otherwise it's too loud
 }
 
+static bool is_pad_high = false;
+static void read_pad() {
+    // YOUR CODE HERE (2)
+}
+
 static void play_note1() {
     play_tone(NOTE_C4);
 }
@@ -31,7 +37,7 @@ static void play_note2() {
     play_tone(NOTE_D4);
 }
 
-// YOUR CODE HERE
+// YOUR CODE HERE (1)
 
 // this code runs when the microcontroller starts up
 int main() {
@@ -51,4 +57,6 @@ int main() {
     accel.config_feature();  // turn on motion detection
     accel.enable();          // enable accelerometer
 
+    Ticker padTicker;
+    padTicker.attach(&read_pad, 0.03f); // every 30 ms., check the value of the pad
 }
