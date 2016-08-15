@@ -272,7 +272,7 @@ static void play_song_cloud(void*) {
 1. Your device now lists under https://connector.mbed.com/#endpoints.
 1. Through the API Console you can talk to the device.
 1. In the API Console, select **Endpoint directory lookups > POST**.
-1. Select your endpoint, and under 'resource-path' select ``/buzzer/0.play``.
+1. Select your endpoint, and under 'resource-path' select ``/buzzer/0/play``.
 1. Click **TEST API**. Your device will start playing.
 
 ### A web app to control your device
@@ -289,6 +289,6 @@ Open `6_songs-from-the-cloud/web/server.js`.
 1. After a few seconds a link will appear. Click on it, and select 'Open'.
 1. A web page opens and your device will be there. Click on the device, and on the next page click 'Play'.
 1. We can send new sounds to the board, f.e. via the 'Set Mario' button. Wait until you get an alert and press 'Play' again.
-1. You can write some new songs from JavaScript (in ftf2016/6_songs-from-the-cloud/web/views/instrument.html) now.
+1. You can write some new songs from JavaScript (in 6_songs-from-the-cloud/web/views/instrument.html) now.
 
 **Optional:** Look into how we send values to the cloud. Add a way of setting the BPM from the web app as well.
