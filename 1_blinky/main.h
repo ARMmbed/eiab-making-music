@@ -4,9 +4,6 @@ DigitalOut myled(LED1);             // we create a variable 'myled', use it as a
 Ticker flipper;   //Ticker = recurring interrupt to repeatedly call a function at a specified rate
 
 // YOUR CODE HERE
-void blinky() {
-    myled = !myled;
-}
 
 // this code runs when the microcontroller starts up
 int main() {

@@ -63,34 +63,6 @@ static void onRegistered() {
 }
 
 // YOUR CODE HERE
-static vector<int>* parse_pattern(SimpleResourceString value) {
-    // the format is 4:4:4:4, so we need to split the string and turn them into a vector
-    vector<int>* buffer = new vector<int>();
-    stringstream ss(value);
-    string item;
-    while (getline(ss, item, ':')) {
-        buffer->push_back(atoi(item.c_str()));
-    }
-    return buffer;
-}
-
-static void play_song_cloud(void*) {
-    printf("play_song_cloud function is called\n");
-
-    // we can just read the cloud variables, they are automatically synced
-    vector<int>* notesVector = parse_pattern(notes);
-    vector<int>* durationVector = parse_pattern(duration);
-
-    if (notesVector->size() != durationVector->size()) {
-        printf("notes and duration have different size... aborting %d vs. %d", notesVector->size(), durationVector->size());
-        return;
-    }
-
-    play_song(notesVector, durationVector);
-
-    free(notesVector);
-    free(durationVector);
-}
 
 int main() {
     statusTicker.attach(&blinkStatus, 1.0f);
